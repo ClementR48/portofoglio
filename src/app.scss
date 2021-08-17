@@ -4,9 +4,10 @@
   .sections {
     width: 100%;
     height: calc(100vh - 70px);
-    background-color: lightgoldenrodyellow;
+    background-color: rgb(185, 185, 140);
     position: relative;
     top: 70px;
+    scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
     scrollbar-width: none; 
     &::-webkit-scrollbar{
