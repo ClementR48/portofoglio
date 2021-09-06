@@ -1,60 +1,64 @@
-import "./portefolio.scss";
+import './portefolio.scss'
 
-import ReactPlayer from 'react-player'
-import { useEffect } from "react";
+import { useEffect, useState } from 'react'
 
 const Portefolio = () => {
+  const [frontProject, setFrontProject] = useState(true)
 
-  useEffect(() => {
-    <ReactPlayer 
-        url="./assets/video2.mp4"
-        width="500px"
-        playing="true"
-        loop
-      />
-  }, [])
   return (
     <div className="portefolio" id="portefolio">
       <h1>Portefolio</h1>
       <div className="grid">
-      
-      <ReactPlayer 
-        url="./assets/video2.mp4"
-        width="500px"
-        playing
-        loop
-      />
-      
-{/*         <div className="projet">
-          <img src="./assets/photoClement.png" alt="" />
-          <div className="caption">
-            <video src="./assets/video.mp4"></video>
-          </div>
-          
+        <div
+          className={'projet ' + (!frontProject && ' turn')}
+          onClick={() => {
+            setFrontProject(!frontProject)
+          }}
+        >
+          {frontProject && (
+            <div className="front">
+              <video autoPlay muted loop>
+                <source
+                  src="./assets/pepitas-react.mp4"
+                  type="video/mp4"
+                ></source>
+              </video>
+              <div className="caption">
+                <h2>Atelier del Sol</h2>
+                <div className="separation"></div>
+                <p>E-Commerce</p>
+                <p>React</p>
+              </div>
+            </div>
+          )}
+          {!frontProject && (
+            <div className="back">
+              <p className="description">Site e-commerce fait de A à Z</p>
+              <h3>Langages utilisés</h3>
+              <div className="listes">
+                <div className="list-front">
+                  <h4>Front-end</h4>
+                  <ul>
+                    <li>Scss</li>
+                    <li>React</li>
+                    <li></li>
+                  </ul>
+                </div>
+                <div className="list-back">
+                  <h4>Back-end</h4>
+                  <ul>
+                    <li>Node</li>
+                    <li>MongoDB</li>
+                  </ul>
+                </div>
+              </div>
+              
+            </div>
+          )}
         </div>
-        <div className="projet">
-          <img src="./assets/photoClement.png" alt="" />
-          <div className="caption">
-            <video src="./assets/video.mp4"></video>
-          </div>
-          
-        </div>
-        <div className="projet">
-          <img src="./assets/photoClement.png" alt="" />
-          <div className="caption">
-          <video autoPlay width="500px" preload> 
-              <source src="./assets/video.mp4"
-              type="video/mp4" ></source>
-              c'est de la daube ton nav
-            </video>
-          </div>
-
-         
-          
-        </div> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Portefolio;
+export default Portefolio
