@@ -1,3 +1,98 @@
-.contact{
-  background: linear-gradient(rgb(96, 93, 139), rgb(52, 48, 110));
+.contact {
+  /* background: linear-gradient(rgb(96, 93, 139), rgb(52, 48, 110)); */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .delete {
+    display: none;
+  }
+
+  h1 {
+    position: absolute;
+    color: white;
+    z-index: 2;
+    transition: all 0.8s ease;
+    top: 0;
+    
+    opacity: 0;
+    transform: translate(-50%);
+    animation: formAppaer 0.5s forwards;
+  }
+
+  .anim-btn {
+    position: absolute;
+    background-color: black;
+    z-index: 2;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    color: white;
+    border: 2px dashed white;
+    cursor: pointer;
+    transition: all 0.1s linear;
+    transform: scale(0);
+    animation: formAppaer 0.5s forwards;
+
+    &:hover ~ .animation-form {
+      transform: scale(1);
+      transition: all 1s ease;
+    }
+    
+    &:active + .animation-form {
+      transform: scale(0);
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .animation-form {
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    border-radius: 50%;
+    transition: 2s all ease;
+    z-index: 1;
+    transform: scale(10);
+  }
+
+  .formulaire {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 2;
+    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    transform: scale(0);
+    transition: all 0.5s;
+    animation: formAppaer 2s forwards;
+
+    @keyframes formAppaer {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .cancel-btn {
+      background-color: black;
+      z-index: 2;
+
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      color: white;
+      border: 2px dashed white;
+      cursor: pointer;
+    }
+  }
 }

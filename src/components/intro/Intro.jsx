@@ -10,7 +10,7 @@ const Intro = () => {
   useEffect(() => {
     init(textRef.current, {
       showCursor:false,
-      strings: ["React.js", "CSS", "Javascript", "HTML"],
+      strings: ["Front-End","React.js", "CSS", "Javascript", "HTML"],
       startDelay: 500,
       backDelay:  2000,
       backSpeed:  150,
@@ -28,7 +28,7 @@ const Intro = () => {
           <div className="wrapper">
             <h2>Hi There, I'm</h2>
             <h1>Clément Riera</h1>
-            <h3>Développeur Front-End <span ref={textRef} >  </span></h3>
+            <h3>Développeur <span ref={textRef} >  </span></h3>
           </div>
           <a href="#portefolio"><ArrowDown /></a>
         </div>

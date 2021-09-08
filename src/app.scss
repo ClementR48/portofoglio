@@ -1,5 +1,10 @@
 .app {
   height: 100vh;
+  h1 {
+    margin: 20px;
+    text-align: center;
+    font-size: clamp(35px, 7vw, 60px);
+  }
 
   .sections {
     width: 100%;
