@@ -8,15 +8,11 @@ const Portefolio = () => {
   return (
     <div className="portefolio" id="portefolio">
       <h1>Portefolio</h1>
-      <div className="grid">
-        <div
-          className={'projet ' + (!frontProject && ' turn')}
-          onClick={() => {
-            setFrontProject(!frontProject)
-          }}
-        >
-          {frontProject && (
-            <div className="front">
+
+      <div className="galery">
+        <div className="projet">
+          <div className="card">
+            <div className="face front">
               <video autoPlay muted loop>
                 <source
                   src="./assets/pepitas-react.mp4"
@@ -24,15 +20,16 @@ const Portefolio = () => {
                 ></source>
               </video>
               <div className="caption">
-                <h2>Atelier del Sol</h2>
-                <div className="separation"></div>
-                <p>E-Commerce</p>
-                <p>React</p>
+                <div className="caption-info">
+                  <h2>Atelier del Sol</h2>
+                  <div className="separation"></div>
+                  <p>E-Commerce</p>
+                  <p className="text-react">React</p>
+                </div>
               </div>
             </div>
-          )}
-          {!frontProject && (
-            <div className="back">
+
+            <div className="face back">
               <p className="description">Site e-commerce fait de A à Z</p>
               <h3>Langages utilisés</h3>
               <div className="listes">
@@ -52,9 +49,8 @@ const Portefolio = () => {
                   </ul>
                 </div>
               </div>
-              
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

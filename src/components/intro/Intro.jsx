@@ -10,7 +10,7 @@ const Intro = () => {
   useEffect(() => {
     init(textRef.current, {
       showCursor:false,
-      strings: ["React.js", "CSS"],
+      strings: ["React.js", "CSS", "Javascript", "HTML"],
       startDelay: 500,
       backDelay:  2000,
       backSpeed:  150,
@@ -21,7 +21,7 @@ const Intro = () => {
       
         <div className="left">
           <div className="imageContainer">
-            <img src="assets/photoClement2.png" alt="" />
+            {/* <img src="assets/photoClement2.png" alt="" /> */}
           </div>
         </div>
         <div className="right">
