@@ -14,9 +14,10 @@ function App() {
      <Topbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
      <Menu setMenuOpen={setMenuOpen} menuOpen={menuOpen}/>
      <div className="sections">
-       <Intro />
-       <Portefolio />
-       <Contact />
+       <Intro className="section"/>
+       <Portefolio className="section" /> 
+       
+       <Contact className="section"/>
      </div>
     </div>
   );

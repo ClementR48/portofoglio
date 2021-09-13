@@ -5,6 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  
 
   .delete {
     display: none;
@@ -23,7 +25,7 @@
 
   .anim-btn {
     position: absolute;
-    background-color: black;
+    background-color: crimson;
     z-index: 3;
     width: 150px;
     height: 150px;
@@ -51,16 +53,17 @@
   .animation-form {
     width: 150px;
     height: 150px;
-    background-color: black;
+    /* background-color: rgb(65, 65, 92); */
+    background: linear-gradient(black, white);
     border-radius: 50%;
     transition: 2s all ease;
     z-index: 1;
-    transform: scale(10);
+    transform: scale(9);
   }
 
   .formulaire {
     font-family: 'Kaisei HarunoUmi', serif;
-    color: white;
+    color: black;
     z-index: 2;
     position: absolute;
     
