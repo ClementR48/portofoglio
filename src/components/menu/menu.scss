@@ -1,4 +1,4 @@
-@import "../../global.scss";
+@import '../../global.scss';
 
 .menu {
   width: 300px;
@@ -8,59 +8,62 @@
   top: 0;
   right: -300px;
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   transition: all 0.8s ease;
 
   &.active {
     right: 0;
   }
 
-  ul {
+  .menu-wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    font-size: 30px;
-    color: white;
+    justify-content: space-around;
+    position: relative;
 
-    li {
-      margin-bottom: 35px;
-      width: fit-content;
-      
-      a {
-        color: inherit;
-        text-decoration: none;
-        font-weight: lighter;
-        position: relative;
-       
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 30px;
+      color: white;
 
-        .before{
-          
-          position: absolute;
-          width: 100%;
-          height: 2px;
-          bottom: 0;
-          left: 0;
-          background-color: white;
-          transform: translateX(-100%);
-          transition: all 0.3s ease;
-        }
+      li {
+        margin-bottom: 35px;
+        width: fit-content;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+          font-weight: lighter;
+          position: relative;
+
+          .before {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transform: translateX(-100%);
+            transition: all 0.3s ease;
+          }
 
           .hover {
-          position: absolute;
-          width: 100%;
-          height: 2px;
-          bottom: 0;
-          left: 0;
-          background-color: white;
-          transform: translateX(0);
-          transition: all 0.3s ease;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transform: translateX(0);
+            transition: all 0.3s ease;
           }
 
           .after {
@@ -73,18 +76,32 @@
             transform: translateX(100%);
             transition: all 0.3s ease;
           }
-
-       
-
-         
-        
-      }
-      &:hover {
-        font-weight: bolder;
+        }
+        &:hover {
+          font-weight: bolder;
+        }
       }
     }
 
-    
-  }
+    .info-contact {
+      position: absolute;
+      color: white;
+      width: 100%;
+      bottom: 2%;
+      display: flex;
+      flex-direction: column;
+      
+      .itemContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
 
+        .icon {
+          margin-right: 5px;
+        }
+      }
+      
+    }
+  }
 }

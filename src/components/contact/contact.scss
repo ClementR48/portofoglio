@@ -25,7 +25,7 @@
 
   .anim-btn {
     position: absolute;
-    background-color: crimson;
+    background-color: black;
     z-index: 3;
     width: 150px;
     height: 150px;
@@ -54,7 +54,7 @@
     width: 150px;
     height: 150px;
     /* background-color: rgb(65, 65, 92); */
-    background: linear-gradient(black, white);
+    background: linear-gradient(rgb(95, 95, 163) ,white  );
     border-radius: 50%;
     transition: 2s all ease;
     z-index: 1;
