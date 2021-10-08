@@ -1,0 +1,119 @@
+.carousel {
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  
+
+  .slider {
+    width: 90vw;
+    height: 100%;
+    /* background: linear-gradient(rgba(255, 255, 255, 0.5), rgb(130, 145, 214))  */
+    
+    /* overflow-x: visible; */ 
+  }
+
+  .container-slides {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible; 
+    position: relative;
+    
+  }
+
+  .container-item {
+    position: absolute;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transition: transform 0.5s ease;
+  }
+
+  .item {
+    width: 30vw;
+    padding: 20px 10px;
+    perspective: 1500px;
+    overflow-y: hidden;
+  }
+
+  .double-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    
+    
+  }
+
+  .face,
+  .arriere {
+    
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  }
+
+  .face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .face img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .arriere {
+    transform: rotateY(90deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+    background-color: #333;
+    font-size: 80px;
+  }
+
+  .active-item {
+    transform: rotateY(180deg);
+  }
+
+  .active-slider {
+    transform: translateX(-50%);
+  }
+
+  /* Fleches */
+
+   .previous,
+  .next {
+    position: absolute;
+    width: clamp(25px, 6vw, 40px);
+    height: clamp(25px, 6vw, 40px);
+    border-radius: 50%;
+    background-color: white;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .previous {
+    left: 1px;
+  }
+
+  .next {
+    right: 1px;
+  } 
+}

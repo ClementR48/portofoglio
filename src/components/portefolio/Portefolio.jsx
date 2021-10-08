@@ -1,5 +1,7 @@
 import "./portefolio.scss";
 
+import Carousel from "./Carousel";
+
 import { ArrowDown, ArrowLeft, ArrowRight } from "react-feather";
 
 
@@ -24,6 +26,7 @@ const Portefolio = () => {
         </ul>
       </div>
      
+     <Carousel />
 
 
       <div className="container-lien">
