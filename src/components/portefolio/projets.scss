@@ -1,0 +1,49 @@
+.item {
+  width: 28.333vw;
+  padding: 20px 15px;
+  perspective: 1500px;
+  overflow-y: hidden;
+
+  .double-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+
+  .face,
+  .arriere {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .face img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .arriere {
+    transform: rotateY(90deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+    background-color: #333;
+    font-size: 80px;
+  }
+
+  .active-item {
+    transform: rotateY(180deg) scale(1.05);
+  }
+}
