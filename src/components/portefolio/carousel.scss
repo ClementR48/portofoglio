@@ -1,9 +1,10 @@
 .carousel {
   width: 100vw;
-  height: 50vh;
+  height: 35vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(170, 155, 155, 0.233);
   
   
   /* background-color: rgba(255, 255, 255, 0.5); */
@@ -12,6 +13,7 @@
   .slider {
     width: 85vw;
     height: 35vh;
+    
     
     /* background: linear-gradient(rgba(255, 255, 255, 0.5), rgb(130, 145, 214))  */
     
@@ -84,12 +86,12 @@
 
 @media screen and (max-width: 769px) {
   .carousel .item {
-    width: 45vw;
-    padding: 0;
+    width: 42.5vw;
+    
   }
 }
 @media screen and (max-width: 586px) {
   .carousel .item {
-    width: 90vw;
+    width: 85vw;
   }
 }

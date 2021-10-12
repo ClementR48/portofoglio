@@ -1,32 +1,38 @@
 import "./portefolio.scss";
 
 import Carousel from "./Carousel";
-
-import { ArrowDown, ArrowLeft, ArrowRight } from "react-feather";
+import dataSlider from "../../data/projets";
+import { useState } from "react";
+import { ArrowDown } from "react-feather";
 
 
 
 const Portefolio = () => {
+  
+  const [activeLink, setActiveLink] = useState(false)
+  let arr = [];
+  dataSlider.map(item => arr.push(item.categorie))
+  let newArr = Array.from(new Set(arr))
+
 
   
-
   return (
     <div className="portefolio" id="portefolio">
       <div className="first-block">
         <h1>Portefolio</h1>
 
         <ul className="categories">
-          <li>React</li>
-          <li>React</li>
-          <li>React</li>
-
-          <li>JS</li>
-          <li>JS</li>
-          <li>JS</li>
+          {newArr.map((categ, index ) => {
+            return <li key={index} className={activeLink ? "active-link" : ""} onClick={() => {
+              setActiveLink(!activeLink)
+            }}>{categ}</li>
+          } )}
+          
+         
         </ul>
       </div>
      
-     <Carousel />
+     <Carousel dataSlider={dataSlider}/>
 
 
       <div className="container-lien">
