@@ -1,0 +1,29 @@
+.categories {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10vh;
+  margin-bottom: 20px;
+
+  li {
+    background-color: rgb(83, 83, 165);
+    margin: 8px 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: clamp(14px, 1.1vw, 40px);
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+
+    &:hover {
+      background-color: white;
+      color: rgb(83, 83, 165);
+    }
+  }
+  .active-link {
+    background-color: white;
+    color: rgb(83, 83, 165);
+  }
+}

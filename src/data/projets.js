@@ -9,6 +9,20 @@ const dataSlider = [
     picture: "assets/img-atelier.png"
   },
   {
+    id: 6,
+    title: "Lorem ipsum",
+    subTitle: "Lorem",
+    categorie: 'JS',
+    picture: "assets/img-atelier.png"
+  },
+  {
+    id: 7,
+    title: "Lorem ipsum",
+    subTitle: "Lorem",
+    categorie: 'JS',
+    picture: "assets/img-atelier.png"
+  },
+  {
     id: 2,
     title: "Lorem ipsum",
     subTitle: "Lorem",

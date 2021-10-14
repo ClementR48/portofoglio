@@ -1,93 +1,80 @@
 .carousel {
-  width: 100vw;
-  height: 35vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(170, 155, 155, 0.233);
   
-  
-  /* background-color: rgba(255, 255, 255, 0.5); */
-  
-
-  .slider {
-    width: 85vw;
+  .carousel-container {
+    width: 100vw;
     height: 35vh;
-    
-    
-    /* background: linear-gradient(rgba(255, 255, 255, 0.5), rgb(130, 145, 214))  */
-    
-    /* overflow-x: visible; */ 
-  }
-
-  .container-slides {
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: visible; 
+    background-color: rgba(170, 155, 155, 0.233);
     position: relative;
-    
-  }
 
-  .container-item {
-    position: absolute;
-    display: flex;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    transition: transform 0.5s ease;
-  }
+    /* background-color: rgba(255, 255, 255, 0.5); */
+
+    .slider {
+      width: 85vw;
+      height: 35vh;
+
+      /* background: linear-gradient(rgba(255, 255, 255, 0.5), rgb(130, 145, 214))  */
+
+      /* overflow-x: visible; */
+    }
+
+    .container-slides {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+      position: relative;
+    }
+
+    .container-item {
+      position: absolute;
+      display: flex;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      transition: transform 0.5s ease;
+    }
+
+    .active-container-item {
+      right: 0;
+      align-items: center;
+      justify-content: center;
+    }
 
   
+    /* Cercles */
 
+    .cercles-container {
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-  /* Fleches */
+      span {
+        text-align: center;
+        border-radius: 50%;
 
-   .previous,
-  .next {
-    position: absolute;
-    width: clamp(30px, 3vw, 80px);
-    height: clamp(30px, 3vw, 80px);
-    border-radius: 50%;
-    background-color: rgba(255 , 250, 250, 0.5);
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    outline: none;
-    border: 1px rgb(83,83,165) dashed;
+        margin-left: 20px;
+        font-size: 14px;
+      }
+
+      .active-cercle {
+        color: blue;
+      }
+    }
   }
-
-  
-
-  .previous:hover,
-  .next:hover {
-    background-color: rgb(83,83,165);
-  }
-
-  .previous:hover,
-  .next:hover svg {
-    color: white;
-  }
-
-  .previous {
-    left: 1px;
-  }
-
-  .next {
-    right: 1px;
-  } 
 }
 
 @media screen and (max-width: 769px) {
   .carousel .item {
     width: 42.5vw;
-    
   }
 }
 @media screen and (max-width: 586px) {

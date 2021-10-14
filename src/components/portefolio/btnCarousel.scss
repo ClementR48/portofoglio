@@ -1,0 +1,38 @@
+/* Fleches */
+.commandes {
+  .previous,
+  .next {
+    position: absolute;
+    width: clamp(30px, 3vw, 80px);
+    height: clamp(30px, 3vw, 80px);
+    border-radius: 50%;
+    background-color: rgba(255, 250, 250, 0.5);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+    border: 1px rgb(83, 83, 165) dashed;
+  }
+
+  .previous:hover,
+  .next:hover {
+    background-color: rgb(83, 83, 165);
+  }
+
+  .previous:hover,
+  .next:hover svg {
+    color: white;
+  }
+
+  .previous {
+    left: 1px;
+  }
+
+  .next {
+    right: 1px;
+  }
+}

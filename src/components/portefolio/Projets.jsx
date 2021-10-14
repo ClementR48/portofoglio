@@ -3,7 +3,7 @@ import { useState } from "react/cjs/react.development";
 import "./projets.scss";
 
 
-const Projets = ({ picture}) => {
+const Projets = ({picture}) => {
 
   const [activeItem, setActiveItem] = useState(false);
   

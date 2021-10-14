@@ -1,8 +1,19 @@
 .item {
   width: 28.333vw;
+  height: 100%;
   padding: 20px 15px;
   perspective: 1500px;
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: apparition 0.8s forwards;
   
+
+  @keyframes apparition {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   .double-face {
     position: relative;
