@@ -1,25 +1,32 @@
-import React from 'react';
-import "./cercleCarousel.scss"
+import React, { useState } from "react";
+import "./cercleCarousel.scss";
 
-const CercleCarousel = ({nbCercles, animSlide, cercleResponsive}) => {
+const CercleCarousel = ({
+  nbCercles,
+  animSlide,
+  sliderResponsive,
+  activeNoSlider,
+}) => {
   return (
     <div className="cercles-container">
-                {nbCercles.map((item, index) => {
-                  return (
-                    <span
-                      key={index}
-                      className={
-                        animSlide.index === index ? "active-cercle" : ""
-                      }
-                      onClick={() => {
-                        cercleResponsive(index);
-                      }}
-                    >
-                      {item}
-                    </span>
-                  );
-                })}
-              </div>
+      {nbCercles.map((item, index) => {
+        return (
+          <div
+            key={index}
+           /*  className={
+              animSlide.index === index
+                ? " span-container active-cercle"
+                : "span-container"
+            } */
+            onClick={() => {
+              sliderResponsive(index, 85 / 3);
+            }}
+          >
+            <span></span>
+          </div>
+        );
+      })}
+    </div>
   );
 };
 
