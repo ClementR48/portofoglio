@@ -1,3 +1,5 @@
+@import '../../global.scss';
+
 .carousel {
   position: relative;
   justify-content: center;
@@ -10,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(170, 155, 155, 0.233);
+    background-color: $colorFontMenu;
     position: relative;
 
     /* background-color: rgba(255, 255, 255, 0.5); */
@@ -50,7 +52,7 @@
     }
 
   
-    /* Cercles */
+
 
   
   }

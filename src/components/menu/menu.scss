@@ -3,7 +3,7 @@
 .menu {
   width: 300px;
   height: 100vh;
-  background-color: $mainColor;
+  background-color: $thirdColor;
   position: fixed;
   top: 0;
   right: -300px;
@@ -32,7 +32,7 @@
       padding: 0;
       list-style: none;
       font-size: 30px;
-      color: white;
+      color: $colorFontMenu;
 
       li {
         margin-bottom: 35px;
@@ -50,7 +50,7 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: white;
+            background-color: $colorFontMenu;
             transform: translateX(-100%);
             transition: all 0.3s ease;
           }
@@ -61,7 +61,7 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: white;
+            background-color: $colorFontMenu;
             transform: translateX(0);
             transition: all 0.3s ease;
           }
@@ -72,7 +72,7 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: white;
+            background-color: $colorFontMenu;
             transform: translateX(100%);
             transition: all 0.3s ease;
           }
@@ -85,7 +85,7 @@
 
     .info-contact {
       position: absolute;
-      color: white;
+      color: $colorFontMenu;
       width: 100%;
       bottom: 2%;
       display: flex;

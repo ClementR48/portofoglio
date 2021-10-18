@@ -1,5 +1,7 @@
+@import "../../global.scss";
+
 .contact {
-  /* background: linear-gradient(rgb(96, 93, 139), rgb(52, 48, 110)); */
+  
   overflow: hidden;
   position: relative;
   display: flex;
@@ -14,7 +16,7 @@
 
   h1 {
     position: absolute;
-    color: white;
+    color: $colorBackgroundGeneral;
     z-index: 2;
     transition: all 0.8s ease;
     top: 0;
@@ -53,163 +55,16 @@
   .animation-form {
     width: 150px;
     height: 150px;
-    /* background-color: rgb(65, 65, 92); */
-    background: linear-gradient(rgb(95, 95, 163) ,white  );
+    
+    background-color: $thirdColor;
     border-radius: 50%;
     transition: 2s all ease;
     z-index: 1;
     transform: scale(9);
   }
 
-  .formulaire {
-    font-family: 'Kaisei HarunoUmi', serif;
-    color: black;
-    z-index: 2;
-    position: absolute;
-    
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    transform: scale(0);
-    transition: all 0.5s;
-    animation: formAppaer 2s forwards;
-
-    @keyframes formAppaer {
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .formulaire-titre {
-      position: relative;
-      text-align: center;
-      overflow: visible;
-
-      h2 {
-        font-family: 'Kaisei HarunoUmi', serif;
-        font-size: clamp(34px, 9vw, 45px);
-        margin-bottom: 15px;
-      }
-
-      .cancel-btn {
-        background-color: black;
-        z-index: 2;
-        position: absolute;
-
-        top: 0px;
-        right: -150px;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        color: white;
-        border: 2px dashed white;
-        cursor: pointer;
-        transition: all 0.5s ease;
-
-        &:hover {
-          transform: rotate(180deg);
-          font-size: 40px;
-        }
-      }
-
-      p {
-        font-family: 'Kaisei HarunoUmi', serif;
-        font-size: clamp(18px, 3vw, 24px);
-        margin-bottom: 30px;
-      }
-    }
-
-    form {
-      font-family: 'Kaisei HarunoUmi', serif;
-      width: 50%;
-      display: flex;
-      flex-wrap: wrap;
-
-      label {
-        font-family: 'Kaisei HarunoUmi', serif;
-        display: flex;
-        flex-direction: column;
-        color: rgb(136, 121, 35);
-        text-transform: uppercase;
-      }
-
-      input:focus {
-        outline: none;
-      }
-
-      .container-firstline {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;
-
-        label {
-          font-size: clamp(14px, 2vw, 18px);
-          width: 48%;
-
-          input {
-            font-size: 18px;
-            font-weight: bolder;
-            margin: 10px 0;
-            padding: 5px;
-          }
-        }
-      }
-
-      .label-email {
-        width: 100%;
-        margin-bottom: 15px;
-        font-size: clamp(14px, 2vw, 18px);
-
-        input {
-          font-size: 18px;
-          font-weight: bolder;
-          margin: 10px 0;
-          padding: 5px;
-        }
-      }
-      .label-message {
-        width: 100%;
-        margin-bottom: 15px;
-        font-size: clamp(14px, 2vw, 18px);
-
-        textarea {
-          font-size: 18px;
-          font-weight: bolder;
-          margin: 10px 0;
-          padding: 5px;
-
-          &:focus {
-            outline: none;
-          }
-        }
-      }
-
-      button {
-        font-family: 'Kaisei HarunoUmi', serif;
-        font-size: clamp(14px, 3vw, 18px);
-        margin: 0 auto;
-        padding: 15px 50px;
-        background-color: rgb(136, 121, 35);
-        color: white;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: 1px solid transparent;
-        cursor: pointer;
-        transition: all 0.5s ease;
-
-        &:hover {
-          border: 1px solid white;
-          background-color: black;
-        }
-      }
-    }
+  .active-animation-form {
+    background-color: $colorFontMenu;
   }
 }
 
