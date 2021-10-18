@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import "./cercleCarousel.scss";
 
 const CercleCarousel = ({
@@ -13,16 +13,16 @@ const CercleCarousel = ({
         return (
           <div
             key={index}
-           /*  className={
+            className={
               animSlide.index === index
                 ? " span-container active-cercle"
                 : "span-container"
-            } */
+            } 
             onClick={() => {
               sliderResponsive(index, 85 / 3);
             }}
           >
-            <span></span>
+            <span className={activeNoSlider ? "active-span" : ""}></span>
           </div>
         );
       })}

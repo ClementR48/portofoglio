@@ -21,7 +21,7 @@ const CategCarousel = ({ dataSlider, setProjetListToDisplay }) => {
           <li
             key={index}
             className={index === activeCateg ? "active-categ" : ""}
-            onClick={(e) => {
+            onClick={() => {
               setActiveCateg(index);
               projetToDisplay(categ);
             }}

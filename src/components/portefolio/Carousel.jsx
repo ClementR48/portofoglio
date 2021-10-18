@@ -7,18 +7,13 @@ import BtnCarousel from "./BtnCarousel";
 import CategCarousel from "./CategCarousel";
 import CercleCarousel from "./CercleCarousel";
 
-
 const Carousel = () => {
-  
-
-
   /* State */
-
-
 
   const [projetListToDisplay, setProjetListToDisplay] = useState(dataSlider);
 
-  const [sizeSlider, setSizeSlider] = useState(85);
+  const [sizeSlider] = useState(85);
+  const [windowSize, setWindowSize] = useState();
   const [nbCercles, setNbCercles] = useState([]);
   const [activeNoSlider, setActiveNoSlider] = useState(false);
 
@@ -28,143 +23,153 @@ const Carousel = () => {
     inProgress: false,
   });
 
-
-
   /* Référence */
-
 
   const slider = useRef();
   const containerItem = useRef();
 
-  
-
   /* UseEffect */
 
+  /* a chaque redimensions d'écran, on reinitialise l'animation du Slide */
   useEffect(() => {
-    
-
-    
-
-     window.addEventListener('resize', (e) => {
-      if(e.target.innerWidth < 425){
-        setAnimSlide({
-          index: 0,
-          transform: 85,
-          inProgress: false,
-        })
-        
-
-      }else if(e.target.innerWidth < 769){
-        setAnimSlide({
-          index: 0,
-          transform: 85 / 2,
-          inProgress: false,
-        })
-      }else {
-        setAnimSlide({
-          index:0,
-          transform: 85 / 3,
-          inProgress: false,
-        })
-      }
-    }) 
-  }, [])
-
-  useEffect(() => {
-    if(projetListToDisplay.length <= 3){
+    window.addEventListener("resize", () => {
+      containerItem.current.style.transform = `translateX(0vw)`;
       setAnimSlide({
         index: 0,
-        transform: 0,
+        transform: sizeSlider,
         inProgress: false,
-      })
-      setActiveNoSlider(true)
-    }else  {
-      setActiveNoSlider(false)
-      
-    }
-  }, [projetListToDisplay])
+      });
+    });
+  }, []);
 
+  /* On affecte une taille d'écran a chaque anim Slide */
   useEffect(() => {
-    /* setSizeSlider(slider.current.offsetWidth); */
-    
-
-      containerItem.current.style.transform = `translateX(-${
-        animSlide.index * animSlide.transform
-      }vw)`;
-    
-
+    setWindowSize(window.innerWidth);
   }, [animSlide]);
 
-
-/*   useEffect(() => {
-    if(projetListToDisplay > 3){
-
-      containerItem.current.style.transform = `translateX(-${
-        animSlide.index * animSlide.transform
-      }vw)`;
-    }
-
-    setSizeSlider(slider.current.offsetWidth); 
-
-    
-  }, [animSlide]);
- */
+  /* A chaque changement de données dans le slide, on détermine si besoin d'un slider ou non  */
 
   useEffect(() => {
-
-    if(projetListToDisplay > 3){
-
-      containerItem.current.style.transform = `translateX(-${
-        animSlide.index * animSlide.transform
-      }vw)`;
-    }
-    let cercles = [];
-   /*  if (sizeSlider < 526) {
-      for (let i = 1; i < projetListToDisplay.length + 1; i++) {
-        cercles.push(i);
+    if (windowSize < 427) {
+      if (projetListToDisplay.length >= 2) {
+        setAnimSlide({
+          index: 0,
+          transform: 0,
+          inProgress: false,
+        });
+        setActiveNoSlider(false);
+      } else {
+        setAnimSlide({
+          index: 0,
+          transform: 0,
+          inProgress: false,
+        });
+        setActiveNoSlider(true);
       }
-    } else if (sizeSlider < 654) {
-      for (let i = 1; i < projetListToDisplay.length; i++) {
-        cercles.push(i);
+    } else if (windowSize < 769) {
+      if (projetListToDisplay.length >= 3) {
+        setAnimSlide({
+          index: 0,
+          transform: 0,
+          inProgress: false,
+        });
+        setActiveNoSlider(false);
+      } else {
+        setAnimSlide({
+          index: 0,
+          transform: 0,
+          inProgress: false,
+        });
+        setActiveNoSlider(true);
       }
     } else {
-      for (let i = 1; i < projetListToDisplay.length - 1; i++) {
+      if (projetListToDisplay.length <= 3) {
+        setAnimSlide({
+          index: 0,
+          transform: 0,
+          inProgress: false,
+        });
+        setActiveNoSlider(true);
+      } else {
+        setAnimSlide({
+          index: 0,
+          transform: 0,
+          inProgress: false,
+        });
+        setActiveNoSlider(false);
+      }
+    }
+  }, [projetListToDisplay, windowSize]);
+
+  /* On détermine le nombre de cercle selon le nombre d'item et de la taille de l'écran */
+
+  useEffect(() => {
+    containerItem.current.style.transform = `translateX(-${
+      animSlide.index * animSlide.transform
+    }vw)`;
+
+    let cercles = [];
+    if(windowSize < 427) {
+      for (let i = 1; i < projetListToDisplay.length + 1 ; i++) {
         cercles.push(i);
       }
-    } */
-    for (let i = 1; i < projetListToDisplay.length - 1 ; i++) {
-      cercles.push(i);
+    }else if(windowSize < 769) {
+      for (let i = 1; i < projetListToDisplay.length  ; i++) {
+        cercles.push(i);
+      }
+    }else {
+      for (let i = 1; i < projetListToDisplay.length - 1 ; i++) {
+        cercles.push(i);
+      }
     }
+    
 
     setNbCercles(cercles);
-  }, [/* sizeSlider, */ projetListToDisplay]); 
-
+  }, [projetListToDisplay, animSlide, windowSize]);
 
   /* Fonctions  */
 
-/*   const cercleResponsive = (index) => {
-    if (sizeSlider < 526) {
-      sliderResponsive(index, sizeSlider);
-    } else if (sizeSlider < 654) {
-      sliderResponsive(index, sizeSlider / 2);
-    } else {
-      sliderResponsive(index, sizeSlider / 3);
-    }
-  }; */
-
-  const sliderResponsive = (index, transform) => {
-    setAnimSlide({
-      index: index,
-      transform: transform,
-      inProgress: true,
-    });
-    setTimeout(() => {
+  const sliderResponsive = (index) => {
+    if (windowSize < 427) {
       setAnimSlide({
         index: index,
-        transform: transform,
-        inProgress: false,
+        transform: sizeSlider,
+        inProgress: true,
       });
-    }, 500);
+      setTimeout(() => {
+        setAnimSlide({
+          index: index,
+          transform: sizeSlider,
+          inProgress: false,
+        });
+      }, 500);
+    } else if (windowSize < 769) {
+      setAnimSlide({
+        index: index,
+        transform: sizeSlider / 2,
+        inProgress: true,
+      });
+      setTimeout(() => {
+        setAnimSlide({
+          index: index,
+          transform: sizeSlider / 2,
+          inProgress: false,
+        });
+      }, 500);
+    } else {
+      setAnimSlide({
+        index: index,
+        transform: sizeSlider / 3,
+        inProgress: true,
+      });
+      setTimeout(() => {
+        setAnimSlide({
+          index: index,
+          transform: sizeSlider / 3,
+          inProgress: false,
+        });
+      }, 500);
+    }
   };
 
   /* Return */
@@ -179,11 +184,10 @@ const Carousel = () => {
       <div className="carousel-container">
         <BtnCarousel
           animSlide={animSlide}
-          sizeSlider={sizeSlider}
+          windowSize={windowSize}
           dataSlider={projetListToDisplay}
           sliderResponsive={sliderResponsive}
           activeNoSlider={activeNoSlider}
-          
         />
         <div className="slider" ref={slider}>
           <div className="container-slides">
@@ -199,18 +203,16 @@ const Carousel = () => {
                 return <Projets key={item.id} {...item} />;
               })}
             </div>
-
           </div>
         </div>
       </div>
-            
-              <CercleCarousel
-                nbCercles={nbCercles}
-                animSlide={animSlide}
-                sliderResponsive ={sliderResponsive}
-                activeNoSlider={activeNoSlider}
-              />
-            
+
+      <CercleCarousel
+        nbCercles={nbCercles}
+        animSlide={animSlide}
+        sliderResponsive={sliderResponsive}
+        activeNoSlider={activeNoSlider}
+      />
     </div>
   );
 };

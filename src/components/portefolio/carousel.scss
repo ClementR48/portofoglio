@@ -2,7 +2,7 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  height: 60vh;
+  height: 70vh;
   overflow-y: hidden;
   .carousel-container {
     width: 100vw;
@@ -61,7 +61,7 @@
     width: 42.5vw;
   }
 }
-@media screen and (max-width: 586px) {
+@media screen and (max-width: 426px) {
   .carousel .item {
     width: 85vw;
   }

@@ -1,109 +1,63 @@
 import { ArrowLeft, ArrowRight } from "react-feather";
 
-import './btnCarousel.scss'
+import "./btnCarousel.scss";
 
 const BtnCarousel = ({
   animSlide,
   dataSlider,
-  sizeSlider,
   sliderResponsive,
-  activeNoSlider
-  
+  activeNoSlider,
+  windowSize,
 }) => {
+  /* Fonction permettant de définir l'index sur lequel se fixer en cas de dépassaement du nombre d'élement dans le tableau */
 
+  const responsiveBtn = (nbItem) => {
+    if (dataSlider.length > nbItem) {
+      if (
+        animSlide.index === dataSlider.length - nbItem &&
+        !animSlide.inProgress
+      ) {
+        sliderResponsive(0);
+      } else if (
+        animSlide.index !== dataSlider.length - nbItem &&
+        !animSlide.inProgress
+      ) {
+        sliderResponsive(animSlide.index + 1);
+      }
+    }
+  };
+
+  const responsiveBtnPre = (nbItem) => {
+    if (dataSlider.length > nbItem) {
+      if (animSlide.index === 0 && !animSlide.inProgress) {
+        sliderResponsive(dataSlider.length - nbItem);
+      } else if (animSlide.index !== 0 && !animSlide.inProgress) {
+        sliderResponsive(animSlide.index - 1);
+      }
+    }
+  };
 
   /* function pour bouton next */
   const next = () => {
-
-    if(dataSlider.length > 3){
-
-      if (animSlide.index === dataSlider.length - 3 && !animSlide.inProgress) {
-        
-        sliderResponsive(0, 85 / 3 );
-      } else if (
-        animSlide.index !== dataSlider.length - 3 &&
-        !animSlide.inProgress
-        ) {
-          sliderResponsive(animSlide.index + 1, 85 / 3);
-        }
-      }
-    
-    /* if (sizeSlider < 426) {
-      if (animSlide.index === dataSlider.length - 1 && !animSlide.inProgress) {
-        sliderResponsive(0, sizeSlider * 3);
-        
-      } else if (
-        animSlide.index !== dataSlider.length - 1 &&
-        !animSlide.inProgress
-      ) {
-        sliderResponsive(animSlide.index + 1, sizeSlider);
-      }
-    } else if (sizeSlider < 769) {
-      if (animSlide.index === dataSlider.length - 2 && !animSlide.inProgress) {
-        sliderResponsive(0, sizeSlider);
-      } else if (
-        animSlide.index !== dataSlider.length - 2 &&
-        !animSlide.inProgress
-      ) {
-        sliderResponsive(animSlide.index + 1, sizeSlider);
-      }
+    if (windowSize < 427) {
+      responsiveBtn(1);
+    } else if (windowSize < 769) {
+      responsiveBtn(2);
     } else {
-      if(dataSlider.length > 3){
-
-        if (animSlide.index === dataSlider.length - 3 && !animSlide.inProgress) {
-          
-          sliderResponsive(0, sizeSlider );
-        } else if (
-          animSlide.index !== dataSlider.length - 3 &&
-          !animSlide.inProgress
-          ) {
-            sliderResponsive(animSlide.index + 1, sizeSlider);
-          }
-        }else {
-
-          
-        }
-      } */
+      responsiveBtn(3);
+    }
   };
 
   /* function bouton previous  */
 
   const previous = () => {
-
-    if(dataSlider.length > 3){
-
-      if (animSlide.index === 0 && !animSlide.inProgress) {
-        
-        sliderResponsive(dataSlider.length - 3, 85 / 3 );
-      } else if (
-        animSlide.index !== 0 &&
-        !animSlide.inProgress
-        ) {
-          sliderResponsive(animSlide.index - 1, 85 / 3);
-        }
-      }
-
-    /* if (sizeSlider < 526) {
-      if (animSlide.index === 0 && !animSlide.inProgress) {
-        sliderResponsive(dataSlider.length - 1, sizeSlider);
-      } else if (animSlide.index !== 0 && !animSlide.inProgress) {
-        sliderResponsive(animSlide.index - 1, sizeSlider);
-      }
-    } else if (sizeSlider < 654) {
-      if (animSlide.index === 0 && !animSlide.inProgress) {
-        sliderResponsive(dataSlider.length - 2, sizeSlider / 2);
-      } else if (animSlide.index !== 0 && !animSlide.inProgress) {
-        sliderResponsive(animSlide.index - 1, sizeSlider / 2);
-      }
+    if (windowSize < 427) {
+      responsiveBtnPre(1);
+    } else if (windowSize < 769) {
+      responsiveBtnPre(2);
     } else {
-      if (dataSlider.length <= 3) {
-      }
-      if (animSlide.index === 0 && !animSlide.inProgress) {
-        sliderResponsive(dataSlider.length - 3, sizeSlider / 3);
-      } else if (animSlide.index !== 0 && !animSlide.inProgress) {
-        sliderResponsive(animSlide.index - 1, sizeSlider / 3);
-      }
-    } */
+      responsiveBtnPre(3);
+    }
   };
   return (
     <div className="commandes">
