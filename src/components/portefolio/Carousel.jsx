@@ -16,6 +16,7 @@ const Carousel = () => {
   const [windowSize, setWindowSize] = useState();
   const [nbCercles, setNbCercles] = useState([]);
   const [activeNoSlider, setActiveNoSlider] = useState(false);
+  const [activeItem, setActiveItem] = useState(false);
 
   const [animSlide, setAnimSlide] = useState({
     index: 0,
@@ -32,14 +33,22 @@ const Carousel = () => {
 
   /* a chaque redimensions d'écran, on reinitialise l'animation du Slide */
   useEffect(() => {
-    window.addEventListener("resize", () => {
-      containerItem.current.style.transform = `translateX(0vw)`;
-      setAnimSlide({
-        index: 0,
-        transform: sizeSlider,
-        inProgress: false,
-      });
-    });
+    window.addEventListener("resize", resizing);
+
+    function resizing () {
+      
+        containerItem.current.style.transform = `translateX(0vw)`;
+        setAnimSlide({
+          index: 0,
+          transform: sizeSlider,
+          inProgress: false,
+        });
+      
+    }
+
+    return () => {
+      window.removeEventListener("resize", resizing)
+    }
   }, []);
 
   /* On affecte une taille d'écran a chaque anim Slide */
@@ -50,6 +59,7 @@ const Carousel = () => {
   /* A chaque changement de données dans le slide, on détermine si besoin d'un slider ou non  */
 
   useEffect(() => {
+    
     if (windowSize < 427) {
       if (projetListToDisplay.length >= 2) {
         setAnimSlide({
@@ -200,7 +210,7 @@ const Carousel = () => {
               ref={containerItem}
             >
               {projetListToDisplay.map((item, index) => {
-                return <Projets key={item.id} {...item} />;
+                return <Projets key={item.id} {...item} activeItem={activeItem} setActiveItem={setActiveItem} />;
               })}
             </div>
           </div>

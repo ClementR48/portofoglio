@@ -6,14 +6,20 @@ const CategCarousel = ({ dataSlider, setProjetListToDisplay }) => {
   const [activeCateg, setActiveCateg] = useState(-1);
 
   const projetToDisplay = (categ) => {
-    let projetsList = dataSlider.filter((item) => item.categorie === categ);
+    
+    let projetsList = dataSlider.filter((item) =>
+      item.categories.find((categorie) => categorie === categ)
+    );
     setProjetListToDisplay(projetsList);
   };
 
   /* Liste des categories sans doublons  */
+  let arrTransition = [];
   let arrCateg = [];
-  dataSlider.map((item) => arrCateg.push(item.categorie));
+  dataSlider.map((item) => arrTransition.push(item.categories));
+  arrTransition.forEach((arr) => arrCateg.push(...arr));
   let categorieFiltered = Array.from(new Set(arrCateg));
+
   return (
     <ul className="categories">
       {categorieFiltered.map((categ, index) => {
@@ -22,8 +28,11 @@ const CategCarousel = ({ dataSlider, setProjetListToDisplay }) => {
             key={index}
             className={index === activeCateg ? "active-categ" : ""}
             onClick={() => {
+              setTimeout(() => {
+                projetToDisplay(categ);
+              }, 100);
               setActiveCateg(index);
-              projetToDisplay(categ);
+              projetToDisplay("");
             }}
           >
             {categ}

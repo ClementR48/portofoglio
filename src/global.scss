@@ -5,3 +5,11 @@ $secondaryColor: #e0a96d;
 $thirdColor : #ddc3a5;
 $colorInputForm : rgb(228, 225, 225);
 
+
+$width : 769px;
+
+@mixin mobile  {
+  @media screen and (max-width: #{$width}) {
+    @content
+  }
+}

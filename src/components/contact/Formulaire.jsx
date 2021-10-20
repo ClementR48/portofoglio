@@ -2,9 +2,21 @@ import React from 'react';
 import "./formulaire.scss";
 
 import { X } from 'react-feather';
+import { useEffect, useState } from 'react/cjs/react.development';
 
 
 const Formulaire = ({setOpenForm}) => {
+  const [textAreaRow, setTextAreaRow] = useState(4);
+  const [sizeScreen , setSizeScreen] = useState()
+  useEffect(() => {
+    setSizeScreen(window.innerWidth);
+  }, [])
+
+  useEffect(() => {
+    if(sizeScreen < 769){
+      setTextAreaRow(3)
+    }
+  }, [sizeScreen])
   return (
     <div className="formulaire">
           <div className="formulaire-titre">
@@ -17,7 +29,7 @@ const Formulaire = ({setOpenForm}) => {
             >
               <span><X /></span> 
             </button>
-            <p>
+            <p className="text-intro-contact">
               Laissez-moi un message et je vous repondrai le plus vite possible{' '}
             </p>
           </div>
@@ -38,7 +50,7 @@ const Formulaire = ({setOpenForm}) => {
             </label>
             <label htmlFor="message" className="label-message">
               Message
-              <textarea htmlFor="message" rows="4"></textarea>
+              <textarea htmlFor="message" rows={textAreaRow}></textarea>
             </label>
             <button type="submit">Envoyer le message</button>
           </form>

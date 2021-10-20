@@ -68,37 +68,3 @@
   }
 }
 
-@media screen and (max-width: 1100px) {
-  .contact {
-    .formulaire {
-      .formulaire-titre {
-        position: static;
-
-        h2 {
-        }
-
-        .cancel-btn {
-          top: -40px;
-          right: -40px;
-          z-index: 3;
-
-          span {
-            display: block;
-            transform: translateX(-15px) translateY(15px);
-          }
-
-          &:hover {
-            background-color: white;
-            color: black;
-            transform: none;
-            font-size: 18px;
-          }
-        }
-      }
-
-      form {
-        width: 70%;
-      }
-    }
-  }
-}
