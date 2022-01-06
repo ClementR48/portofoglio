@@ -1,16 +1,35 @@
 import "./carousel.scss";
 
 import { useEffect, useRef, useState } from "react";
-import dataSlider from "../../data/projets";
+
 import Projets from "./Projets";
 import BtnCarousel from "./BtnCarousel";
 import CategCarousel from "./CategCarousel";
 import CercleCarousel from "./CercleCarousel";
 
-const Carousel = () => {
-  /* State */
+import { db } from "../../utils/firebase_config";
+import { collection, getDocs } from "firebase/firestore";
 
-  const [projetListToDisplay, setProjetListToDisplay] = useState(dataSlider);
+const Carousel = () => {
+  const [dataSlider, setDataSlider] = useState();
+  const projetsCollectionRef = collection(db, "projets");
+
+  useEffect(() => {
+    const getProjets = async () => {
+      const data = await getDocs(projetsCollectionRef);
+      const newData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      setDataSlider(newData);
+      setProjetListToDisplay(newData);
+    };
+    getProjets();
+  }, []);
+
+  
+  
+  /* State */
+  
+  const [projetListToDisplay, setProjetListToDisplay] = useState();
+  
 
   const [sizeSlider] = useState(85);
   const [windowSize, setWindowSize] = useState();
@@ -35,20 +54,18 @@ const Carousel = () => {
   useEffect(() => {
     window.addEventListener("resize", resizing);
 
-    function resizing () {
-      
-        containerItem.current.style.transform = `translateX(0vw)`;
-        setAnimSlide({
-          index: 0,
-          transform: sizeSlider,
-          inProgress: false,
-        });
-      
+    function resizing() {
+      containerItem.current.style.transform = `translateX(0vw)`;
+      setAnimSlide({
+        index: 0,
+        transform: sizeSlider,
+        inProgress: false,
+      });
     }
 
     return () => {
-      window.removeEventListener("resize", resizing)
-    }
+      window.removeEventListener("resize", resizing);
+    };
   }, []);
 
   /* On affecte une taille d'écran a chaque anim Slide */
@@ -59,54 +76,55 @@ const Carousel = () => {
   /* A chaque changement de données dans le slide, on détermine si besoin d'un slider ou non  */
 
   useEffect(() => {
-    
-    if (windowSize < 427) {
-      if (projetListToDisplay.length >= 2) {
-        setAnimSlide({
-          index: 0,
-          transform: 0,
-          inProgress: false,
-        });
-        setActiveNoSlider(false);
+    if (projetListToDisplay !== undefined) {
+      if (windowSize < 427) {
+        if (projetListToDisplay.length >= 2) {
+          setAnimSlide({
+            index: 0,
+            transform: 0,
+            inProgress: false,
+          });
+          setActiveNoSlider(false);
+        } else {
+          setAnimSlide({
+            index: 0,
+            transform: 0,
+            inProgress: false,
+          });
+          setActiveNoSlider(true);
+        }
+      } else if (windowSize < 769) {
+        if (projetListToDisplay.length >= 3) {
+          setAnimSlide({
+            index: 0,
+            transform: 0,
+            inProgress: false,
+          });
+          setActiveNoSlider(false);
+        } else {
+          setAnimSlide({
+            index: 0,
+            transform: 0,
+            inProgress: false,
+          });
+          setActiveNoSlider(true);
+        }
       } else {
-        setAnimSlide({
-          index: 0,
-          transform: 0,
-          inProgress: false,
-        });
-        setActiveNoSlider(true);
-      }
-    } else if (windowSize < 769) {
-      if (projetListToDisplay.length >= 3) {
-        setAnimSlide({
-          index: 0,
-          transform: 0,
-          inProgress: false,
-        });
-        setActiveNoSlider(false);
-      } else {
-        setAnimSlide({
-          index: 0,
-          transform: 0,
-          inProgress: false,
-        });
-        setActiveNoSlider(true);
-      }
-    } else {
-      if (projetListToDisplay.length <= 3) {
-        setAnimSlide({
-          index: 0,
-          transform: 0,
-          inProgress: false,
-        });
-        setActiveNoSlider(true);
-      } else {
-        setAnimSlide({
-          index: 0,
-          transform: 0,
-          inProgress: false,
-        });
-        setActiveNoSlider(false);
+        if (projetListToDisplay.length <= 3) {
+          setAnimSlide({
+            index: 0,
+            transform: 0,
+            inProgress: false,
+          });
+          setActiveNoSlider(true);
+        } else {
+          setAnimSlide({
+            index: 0,
+            transform: 0,
+            inProgress: false,
+          });
+          setActiveNoSlider(false);
+        }
       }
     }
   }, [projetListToDisplay, windowSize]);
@@ -114,27 +132,28 @@ const Carousel = () => {
   /* On détermine le nombre de cercle selon le nombre d'item et de la taille de l'écran */
 
   useEffect(() => {
-    containerItem.current.style.transform = `translateX(-${
-      animSlide.index * animSlide.transform
-    }vw)`;
+    if (dataSlider !== undefined) {
+      containerItem.current.style.transform = `translateX(-${
+        animSlide.index * animSlide.transform
+      }vw)`;
 
-    let cercles = [];
-    if(windowSize < 427) {
-      for (let i = 1; i < projetListToDisplay.length + 1 ; i++) {
-        cercles.push(i);
+      let cercles = [];
+      if (windowSize < 427) {
+        for (let i = 1; i < projetListToDisplay.length + 1; i++) {
+          cercles.push(i);
+        }
+      } else if (windowSize < 769) {
+        for (let i = 1; i < projetListToDisplay.length; i++) {
+          cercles.push(i);
+        }
+      } else {
+        for (let i = 1; i < projetListToDisplay.length - 1; i++) {
+          cercles.push(i);
+        }
       }
-    }else if(windowSize < 769) {
-      for (let i = 1; i < projetListToDisplay.length  ; i++) {
-        cercles.push(i);
-      }
-    }else {
-      for (let i = 1; i < projetListToDisplay.length - 1 ; i++) {
-        cercles.push(i);
-      }
+
+      setNbCercles(cercles);
     }
-    
-
-    setNbCercles(cercles);
   }, [projetListToDisplay, animSlide, windowSize]);
 
   /* Fonctions  */
@@ -185,45 +204,58 @@ const Carousel = () => {
   /* Return */
 
   return (
-    <div className="carousel">
-      <CategCarousel
-        dataSlider={dataSlider}
-        setProjetListToDisplay={setProjetListToDisplay}
-        setAnimSlide={setAnimSlide}
-      />
-      <div className="carousel-container">
-        <BtnCarousel
-          animSlide={animSlide}
-          windowSize={windowSize}
-          dataSlider={projetListToDisplay}
-          sliderResponsive={sliderResponsive}
-          activeNoSlider={activeNoSlider}
-        />
-        <div className="slider" ref={slider}>
-          <div className="container-slides">
-            <div
-              className={
-                activeNoSlider
-                  ? "container-item active-container-item"
-                  : "container-item"
-              }
-              ref={containerItem}
-            >
-              {projetListToDisplay.map((item, index) => {
-                return <Projets key={item.id} {...item} activeItem={activeItem} setActiveItem={setActiveItem} />;
-              })}
+    <>
+      {projetListToDisplay !== undefined ? (
+        <div className="carousel">
+          <CategCarousel
+            dataSlider={dataSlider}
+            setProjetListToDisplay={setProjetListToDisplay}
+            setAnimSlide={setAnimSlide}
+          />
+          <div className="carousel-container">
+            <BtnCarousel
+              animSlide={animSlide}
+              windowSize={windowSize}
+              dataSlider={projetListToDisplay}
+              sliderResponsive={sliderResponsive}
+              activeNoSlider={activeNoSlider}
+            />
+            <div className="slider" ref={slider}>
+              <div className="container-slides">
+                <div
+                  className={
+                    activeNoSlider
+                      ? "container-item active-container-item"
+                      : "container-item"
+                  }
+                  ref={containerItem}
+                >
+                  {projetListToDisplay.map((item) => {
+                    return (
+                      <Projets
+                        key={item.id}
+                        {...item}
+                        activeItem={activeItem}
+                        setActiveItem={setActiveItem}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <CercleCarousel
-        nbCercles={nbCercles}
-        animSlide={animSlide}
-        sliderResponsive={sliderResponsive}
-        activeNoSlider={activeNoSlider}
-      />
-    </div>
+          <CercleCarousel
+            nbCercles={nbCercles}
+            animSlide={animSlide}
+            sliderResponsive={sliderResponsive}
+            activeNoSlider={activeNoSlider}
+          />
+        </div>
+      ) : (
+        "okkkkkkkkkkkkkkkkkkk"
+      )}
+    </>
   );
 };
 

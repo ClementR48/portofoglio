@@ -5,11 +5,8 @@ import "./projets.scss";
 
 const Projets = ({ picture, categories, title, description, link }) => {
   const [activeItem, setActiveItem] = useState(false);
-  let history = useHistory();
-  function redirection() {
-    let url = 'https://www.google.com';
-    history.push(url);
-  }
+  
+  
 
   return (
     <div className="item" onClick={() => setActiveItem(!activeItem)}>
@@ -35,9 +32,7 @@ const Projets = ({ picture, categories, title, description, link }) => {
             <p>{description}</p>
           </div>
           
-          <button onClick={redirection} >
-            Voir le site
-          </button>
+          <a href={link} target="_blank" rel="noreferrer">Lien du site</a>
         </div>
       </div>
     </div>
