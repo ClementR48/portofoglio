@@ -15,6 +15,7 @@
   }
 
   h1 {
+    
     position: absolute;
     color: $colorBackgroundGeneral;
     z-index: 2;
@@ -39,6 +40,8 @@
     transform: scale(0);
     animation: formAppaer 0.5s forwards;
 
+    
+
     &:hover ~ .animation-form {
       transform: scale(1);
       transition: all 1s ease;
@@ -50,6 +53,8 @@
     &:active {
       transform: scale(0.95);
     }
+
+    
   }
 
   .animation-form {
